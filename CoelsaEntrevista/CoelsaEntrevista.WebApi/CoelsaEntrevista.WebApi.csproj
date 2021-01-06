@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CoelsaEntrevista.Interfaces\CoelsaEntrevista.Interfaces.csproj" />
+    <ProjectReference Include="..\CoelsaEntrevista.Mappers\CoelsaEntrevista.Mappers.csproj" />
     <ProjectReference Include="..\CoelsaEntrevista.Repositories\CoelsaEntrevista.Repositories.csproj" />
     <ProjectReference Include="..\CoelsaEntrevista.Services\CoelsaEntrevista.Services.csproj" />
   </ItemGroup>

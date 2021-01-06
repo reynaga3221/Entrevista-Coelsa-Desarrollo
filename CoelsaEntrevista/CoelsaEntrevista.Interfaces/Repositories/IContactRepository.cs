@@ -8,5 +8,6 @@ namespace CoelsaEntrevista.Interfaces.Repositories
     public interface IContactRepository
     {
         IEnumerable<Contact> GetAll();
+        IEnumerable<Contact> GetAllPagination(int skip, int take);
     }
 }

@@ -19,6 +19,9 @@ namespace CoelsaEntrevista.Services
         {
             return _repository.GetAll();
         }
-
+        public IEnumerable<Contact> GetAllPagination(int skip, int take)
+        {
+            return _repository.GetAllPagination(skip, take);
+        }
     }
 }

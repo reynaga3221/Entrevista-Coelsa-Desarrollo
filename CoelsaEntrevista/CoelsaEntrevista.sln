@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoelsaEntrevista.WebApi", "CoelsaEntrevista.WebApi\CoelsaEntrevista.WebApi.csproj", "{F12271E6-7F7E-4A5D-B75F-410B127FD6B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoelsaEntrevista.WebApi", "CoelsaEntrevista.WebApi\CoelsaEntrevista.WebApi.csproj", "{F12271E6-7F7E-4A5D-B75F-410B127FD6B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoelsaEntrevista.Entities", "CoelsaEntrevista.Entities\CoelsaEntrevista.Entities.csproj", "{820CFB12-88C1-407D-BDB7-880639A2FDC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoelsaEntrevista.Entities", "CoelsaEntrevista.Entities\CoelsaEntrevista.Entities.csproj", "{820CFB12-88C1-407D-BDB7-880639A2FDC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoelsaEntrevista.Repositories", "CoelsaEntrevista.Repositories\CoelsaEntrevista.Repositories.csproj", "{5A1B96CB-4202-4299-9417-C3ED4A217DAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoelsaEntrevista.Repositories", "CoelsaEntrevista.Repositories\CoelsaEntrevista.Repositories.csproj", "{5A1B96CB-4202-4299-9417-C3ED4A217DAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoelsaEntrevista.Interfaces", "CoelsaEntrevista.Interfaces\CoelsaEntrevista.Interfaces.csproj", "{423EFCA0-A449-4EBD-B0EA-BE794F6046E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoelsaEntrevista.Interfaces", "CoelsaEntrevista.Interfaces\CoelsaEntrevista.Interfaces.csproj", "{423EFCA0-A449-4EBD-B0EA-BE794F6046E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoelsaEntrevista.Services", "CoelsaEntrevista.Services\CoelsaEntrevista.Services.csproj", "{1711F31E-8EAC-4828-8D58-F70AE64F2C83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoelsaEntrevista.Services", "CoelsaEntrevista.Services\CoelsaEntrevista.Services.csproj", "{1711F31E-8EAC-4828-8D58-F70AE64F2C83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoelsaEntrevista.Mappers", "CoelsaEntrevista.Mappers\CoelsaEntrevista.Mappers.csproj", "{A2808DBC-0036-4491-A94B-F5B477BCA447}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoelsaEntrevista.ContractModels", "CoelsaEntrevista.ContractModels\CoelsaEntrevista.ContractModels.csproj", "{F919EA96-D9F9-4912-9CA8-6EC3BC6DBBCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{1711F31E-8EAC-4828-8D58-F70AE64F2C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1711F31E-8EAC-4828-8D58-F70AE64F2C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1711F31E-8EAC-4828-8D58-F70AE64F2C83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2808DBC-0036-4491-A94B-F5B477BCA447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2808DBC-0036-4491-A94B-F5B477BCA447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2808DBC-0036-4491-A94B-F5B477BCA447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2808DBC-0036-4491-A94B-F5B477BCA447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F919EA96-D9F9-4912-9CA8-6EC3BC6DBBCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F919EA96-D9F9-4912-9CA8-6EC3BC6DBBCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F919EA96-D9F9-4912-9CA8-6EC3BC6DBBCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F919EA96-D9F9-4912-9CA8-6EC3BC6DBBCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
