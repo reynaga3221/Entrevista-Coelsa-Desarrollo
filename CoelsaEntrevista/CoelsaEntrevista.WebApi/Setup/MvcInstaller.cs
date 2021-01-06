@@ -1,4 +1,5 @@
 ﻿using CoelsaEntrevista.WebApi.Middleware;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -15,8 +16,8 @@ namespace CoelsaEntrevista.WebApi.Setup
             services.AddControllersWithViews(opt =>
             {
                 opt.Filters.Add<ExceptionFilter>();
-            });
-         //   .AddFluentValidation(conf => conf.RegisterValidatorsFromAssemblyContaining<Startup>());
+            })
+            .AddFluentValidation(conf => conf.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
     }
 }
