@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System;
 using System.Linq;
 using CoelsaEntrevista.Entities;
 using CoelsaEntrevista.Interfaces;
 using CoelsaEntrevista.Interfaces.Repositories;
 using Dapper;
+using System.Threading.Tasks;
 
 namespace CoelsaEntrevista.Repositories
 {
@@ -13,28 +15,12 @@ namespace CoelsaEntrevista.Repositories
         {
 
         }    
-        public IEnumerable<Contact> GetAll()
+
+        public async Task<IEnumerable<Contact>> GetAll( int skip, int take)
         {
             using (var connection = this.GetConnection())
             {
-                var contacts = connection.Query<Contact, Company, Contact>(@"
-                        select * from Contact ct
-                        inner join Company cp on cp.IdCompany = ct.IdCompany"
-                      , (contacts, company) =>
-                      {
-                          contacts.Company = company;                          
-                          return contacts;
-                      }, splitOn: "IdCompany");
-
-                return contacts;
-            }
-        }
-
-        public IEnumerable<Contact> GetAllPagination( int skip, int take = 10)
-        {
-            using (var connection = this.GetConnection())
-            {
-                var contacts = connection.Query<Contact, Company, Contact>(@"                       
+                var contacts =  await connection.QueryAsync<Contact, Company, Contact>(@"                       
                         select * from Contact ct
                         inner join Company cp on cp.IdCompany = ct.IdCompany
                         order by ct.LastName 
@@ -46,7 +32,30 @@ namespace CoelsaEntrevista.Repositories
                           return contacts;
                       }, new { Skip = skip, Take = take } , splitOn: "IdCompany");
 
-                return contacts;
+                return  contacts;
+            }
+        }
+        public async Task Save(Contact domain)
+        {
+            using (var connection = this.GetConnection())
+            {
+                var affectedRow = await connection.ExecuteAsync("INSERT INTO Contact ( IdContact, FirstName, LastName, Email, PhoneNumber, IdCompany )VALUES (@IdContact, @FirstName, @LastName, @Email, @PhoneNumber, @IdCompany)", new { IdContact = domain.IdContact, FirstName = domain.FirstName, LastName = domain.LastName, Email = domain.Email, PhoneNumber= domain.PhoneNumber, IdCompany = domain.Company.IdCompany});
+            }
+        }
+
+        public async Task Update(Contact domain)
+        {
+            using (var connection = this.GetConnection())
+            {
+                var affectedRows = await connection.ExecuteAsync("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Email = @Email, PhoneNumber = @PhoneNumber, IdCompany = @IdCompany WHERE IdContact = @IdContact", new { IdContact = domain.IdContact, FirstName = domain.FirstName, LastName = domain.LastName, Email = domain.Email, PhoneNumber = domain.PhoneNumber, IdCompany = domain.Company.IdCompany });
+
+            }
+        }
+        public async Task Delete(Guid id)
+        {
+            using (var connection = this.GetConnection())
+            {
+                var affectedRows = await connection.ExecuteAsync("DELETE FROM  Contact  WHERE IdContact = @IdContact", new { IdContact = id });
             }
         }
 

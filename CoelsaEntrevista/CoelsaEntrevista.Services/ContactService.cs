@@ -4,6 +4,7 @@ using System.Text;
 using CoelsaEntrevista.Interfaces.Services;
 using CoelsaEntrevista.Interfaces.Repositories;
 using CoelsaEntrevista.Entities;
+using System.Threading.Tasks;
 
 namespace CoelsaEntrevista.Services
 {
@@ -15,13 +16,22 @@ namespace CoelsaEntrevista.Services
             _repository = contactRepository;
         }
 
-        public IEnumerable<Contact> GetAll()
+        public async Task<IEnumerable<Contact>> GetAll(int skip, int take)
         {
-            return _repository.GetAll();
+            return await _repository.GetAll(skip, take);
         }
-        public IEnumerable<Contact> GetAllPagination(int skip, int take)
+        public async Task Create(Contact domain)
         {
-            return _repository.GetAllPagination(skip, take);
+            await _repository.Save(domain);
+        }
+
+        public async Task Update(Contact domain)
+        {
+            await _repository.Update(domain);
+        }
+        public async Task Delete(Guid id)
+        {
+            await _repository.Delete(id);
         }
     }
 }

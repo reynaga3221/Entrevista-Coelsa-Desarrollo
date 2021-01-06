@@ -13,6 +13,15 @@ namespace CoelsaEntrevista.Mappers.DomainContract
         public ContactProfile()
         {
             CreateMap<Contact, ContactReponse>();
+            CreateMap<ContactRequest, Contact>()
+            .ForMember(dest => dest.Company, opt =>
+                opt.MapFrom(src => new Company
+                    { 
+                        IdCompany = Guid.Parse(src.IdCompany) 
+                    }
+                ))
+            .ForMember(dest => dest.IdContact, opt =>
+                opt.MapFrom(m => string.IsNullOrEmpty(m.IdContact) ? Guid.NewGuid() :  Guid.Parse(m.IdContact)));
         }
     }
 }

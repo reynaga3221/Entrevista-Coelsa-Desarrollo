@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CoelsaEntrevista.Interfaces.Services;
 using CoelsaEntrevista.ContractModels.Requests;
+using CoelsaEntrevista.Entities;
 using CoelsaEntrevista.ContractModels.Responses;
 
 namespace CoelsaEntrevista.WebApi.Controllers
@@ -24,12 +25,34 @@ namespace CoelsaEntrevista.WebApi.Controllers
             _contactService = contactService;
         }
 
-        [HttpGet("{skip}/{take}")]   
-        public IActionResult Get( int skip = 0, int take = 10)
-        {
-            var pepe = _contactService.GetAll().ToList();
-            var response = _mapper.Map<IEnumerable<ContactReponse>>(_contactService.GetAllPagination(skip, take));
+        [HttpGet("{skip}/{take}")]
+        public async Task <IActionResult> Get( int skip = 0, int take = 10)
+        {            
+            var response = _mapper.Map<IEnumerable<ContactReponse>>( await _contactService.GetAll(skip, take));
             return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] ContactRequest contactRequest)
+        {       
+                var domain = _mapper.Map<Contact>(contactRequest);
+                await _contactService.Create(domain);
+                return Created("/Loan/" + domain.IdContact, contactRequest);          
+        }
+
+        [HttpPut]     
+        public async Task<IActionResult> Put([FromBody] ContactRequest contactRequest)
+        {
+            var domainUser = _mapper.Map<Contact>(contactRequest);
+            await _contactService.Update(domainUser);
+            return Ok(contactRequest);
+        }
+
+        [HttpDelete("{id}")]       
+        public async Task<IActionResult> Delete(string id)
+        {
+            await _contactService.Delete(Guid.Parse(id));
+            return Ok();
         }
     }
 }

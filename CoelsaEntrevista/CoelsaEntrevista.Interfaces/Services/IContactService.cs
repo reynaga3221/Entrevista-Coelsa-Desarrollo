@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CoelsaEntrevista.Interfaces.Services
 {
     public interface IContactService
-    {
-        IEnumerable<Contact> GetAll();
-        IEnumerable<Contact> GetAllPagination(int skip, int take);
+    {        
+        Task<IEnumerable<Contact>> GetAll(int skip, int take);
+        Task Update(Contact domain);
+        Task Create(Contact domain);
+        Task Delete(Guid id);
     }
 }
