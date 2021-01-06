@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using CoelsaEntrevista.Services;
 using CoelsaEntrevista.Repositories;
+using CoelsaEntrevista.WebApi.Setup;
 
 namespace CoelsaEntrevista.WebApi
 {
@@ -31,15 +32,14 @@ namespace CoelsaEntrevista.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            
-            services.AddSingleton<IConnectionParameters, DbInstaller>();
 
-            //services
-            services.AddScoped<IContactService, ContactService>();
+            var installers = typeof(Startup).Assembly.ExportedTypes.Where(x =>
+              typeof(IInstaller).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract
+          ).Select(Activator.CreateInstance).Cast<IInstaller>().ToList();
 
-            //repositories
-            services.AddScoped<IContactRepository, ContactRepository>();
+
+            installers.ForEach(i => i.InstallServices(services, Configuration));
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +54,7 @@ namespace CoelsaEntrevista.WebApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
+       
 
             app.UseEndpoints(endpoints =>
             {
