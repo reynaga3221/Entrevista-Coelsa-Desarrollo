@@ -4,5 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoelsaEntrevista.Interfaces\CoelsaEntrevista.Interfaces.csproj" />
+    <ProjectReference Include="..\CoelsaEntrevista.Repositories\CoelsaEntrevista.Repositories.csproj" />
+    <ProjectReference Include="..\CoelsaEntrevista.Services\CoelsaEntrevista.Services.csproj" />
+  </ItemGroup>
+
 
 </Project>
